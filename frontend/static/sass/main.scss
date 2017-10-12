@@ -1,9 +1,110 @@
+// ===== CONSTANTS ===== //
+$grey: #c6c6c6;
+
+// ===== COMMON ===== //
+body {
+    font-family: Lato;
+}
+
+// ===== END OF COMMON CLASSES ===== //
+
+
+
+// ===== TOPICS ===== //
 #creddit-header {
     border-bottom: 1px solid #5f99cf;
     background-color: #cee3f8;
     height: 40px;
 }
 
-#list-container {
-
+#dummy-sidebar {
+    background-color: #fafafb;
+    display: flex;
 }
+
+#topic-list{
+
+    .topic-item {
+        background-color: #fafafb;
+        overflow: auto;
+        margin-bottom: 8px;
+
+        // topic rank for each item
+        .rank {
+            width: 25px;
+            float: left;
+            margin-top: 15px;
+            color: $grey;
+            font-size: medium;
+            text-align: right;
+        }
+
+        // topic votes block
+        .votes {
+            width: 80px;
+            display: inline-block;
+            float: left;
+            margin-left: 7px;
+            margin-right: 7px;
+            text-align: center;
+
+            .score {
+                font-weight: 700;
+                color: $grey;
+            }
+            .arrow {
+                margin: 2px 0px 0px 0px;
+                width: 100%;
+                height: 14px;
+                display: block;
+                cursor: pointer;
+                background-position: center center;
+                background-repeat: no-repeat;
+                width: 15px;
+                margin-left: auto;
+                margin-right: auto;
+                outline: none;
+            }
+            .arrow.down {
+                background-image: url('/static/img/sprite-reddit.png');
+                background-position: -42px -1618px;
+                background-repeat: no-repeat;
+            }
+            .arrow.up {
+                background-image: url('/static/img/sprite-reddit.png');
+                background-position: -42px -1618px;
+                background-repeat: no-repeat;
+            }
+        }
+
+        // topic thumbnail
+        .topic-thumbnail {
+            float: left;
+            width: 70px;
+            overflow: hidden;
+            margin-bottom: 2px;
+            margin-right: 5px;
+
+            img {
+                background-color: $grey;
+            }
+        }
+
+        .entry {
+            margin-left: 3px;
+
+            .title {
+                font-size: 16px;
+                margin-right: .4em;
+                overflow: hidden;
+                color: #0000ff;
+
+                &:visited {
+                    color: #551a8b;
+                }
+            }
+        }
+    }
+}
+
+// ===== END OF TOPICS ===== //

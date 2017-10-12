@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom'
 import { Router, Route, IndexRoute, browserHistory, Link } from 'react-router';
 import { Row, Col } from 'react-bootstrap'   ;
-import Landing from './Landing/Landing';
+import TopicList from './Topic/TopicList';
 
 class Main extends React.Component {
     constructor(props) {
@@ -12,11 +12,9 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <Row id="creddit-header">
-                    <Col xs={12}>
-                        <h1>creddit</h1>
-                    </Col>
-                </Row>
+                <div id="creddit-header">
+                    <h1>creddit</h1>
+                </div>
                 { this.props.children }
             </div>
         );
@@ -26,7 +24,7 @@ class Main extends React.Component {
 render(
     <Router history={browserHistory}>
         <Route path="/" component={Main} >
-            <IndexRoute component={Landing} />
+            <IndexRoute component={TopicList} />
         </Route>
     </Router>,
 document.getElementById('content'));
