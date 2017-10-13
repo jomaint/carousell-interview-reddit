@@ -29,7 +29,6 @@ exports["default"] = function(route) {
     
     // save topics
     .post(function(req,res){
-        console.log('query',req.body)
         let newTopic = {};
         let id = generateID();
         
