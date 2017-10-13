@@ -7,6 +7,15 @@ export default class TopicItem extends React.Component {
         this.state = {};
     }
 
+    onDownVote = () => {
+        console.log('onDownVote');
+    }
+
+    onUpVote = () => {
+        console.log('onUpVote');
+
+    }
+
     render() {
         let { rank, item } = this.props;
         return (
@@ -14,9 +23,9 @@ export default class TopicItem extends React.Component {
                 <Col xs={12}>
                     <span className="rank">{rank}</span>
                     <div className="votes">
-                        <div className="arrow up"></div>
+                        <div className="arrow up" onClick={this.onDownVote}></div>
                         <div className="score">{formatNumber(item.votes)}</div>
-                        <div className="arrow down"></div>
+                        <div className="arrow down" onClick={this.onDownVote}></div>
                     </div>
                     <a className="topic-thumbnail">
                         <img src={`http://loremflickr.com/320/240?random=${rank}`} height="50" width="70" />

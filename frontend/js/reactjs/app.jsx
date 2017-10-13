@@ -12,8 +12,9 @@ class Main extends React.Component {
     render() {
         return (
             <div>
-                <div id="creddit-header">
-                    <h1>creddit</h1>
+                <div id="header">
+                    <img src="/static/img/reddit-carousell.png" />
+                    <span>carousell</span>
                 </div>
                 { this.props.children }
             </div>

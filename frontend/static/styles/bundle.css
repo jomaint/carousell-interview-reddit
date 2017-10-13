@@ -1,17 +1,35 @@
 body {
   font-family: Lato; }
 
-#creddit-header > h1 {
-  margin: 0; }
-
-#creddit-header {
+#header {
   border-bottom: 1px solid #5f99cf;
   background-color: #cee3f8;
   height: 40px; }
+  #header img {
+    height: 40px;
+    width: 120px;
+    margin-bottom: 4px; }
+  #header span {
+    height: 40px;
+    margin-left: 5px;
+    font-family: arial;
+    font-weight: bold;
+    font-variant: normal;
+    font-size: 20px;
+    vertical-align: bottom;
+    position: relative;
+    top: -2px; }
 
-#dummy-sidebar {
-  background-color: #fafafb;
-  display: flex; }
+#menu-area {
+  border-bottom: 1px dotted gray;
+  padding: 5px 10px;
+  margin: 5px;
+  overflow: hidden; }
+  #menu-area #add-topic {
+    padding: 5px; }
+    #menu-area #add-topic:hover {
+      color: #0000ff;
+      cursor: pointer; }
 
 #topic-list .topic-item {
   background-color: #fafafb;
@@ -52,7 +70,7 @@ body {
       background-repeat: no-repeat; }
     #topic-list .topic-item .votes .arrow.up {
       background-image: url("/static/img/sprite-reddit.png");
-      background-position: -42px -1618px;
+      background-position: -84px -1618px;
       background-repeat: no-repeat; }
   #topic-list .topic-item .topic-thumbnail {
     float: left;
@@ -71,3 +89,31 @@ body {
       color: #0000ff; }
       #topic-list .topic-item .entry .title:visited {
         color: #551a8b; }
+
+.topic-modal .modal-content {
+  overflow: auto;
+  padding-bottom: 20px; }
+
+.topic-modal #topic-form {
+  background-color: #cee3f8;
+  border-radius: 4px;
+  padding: 5px 10px 10px 10px; }
+  .topic-modal #topic-form span.label {
+    display: block;
+    color: #555;
+    font-size: 14px;
+    text-align: left;
+    padding-left: 0; }
+  .topic-modal #topic-form input {
+    width: 100%; }
+
+.topic-modal #submit-topic-btn {
+  position: relative;
+  bottom: -10px;
+  right: -10px;
+  padding: 5px 10px;
+  font-size: 13px;
+  margin-top: 10px;
+  float: right;
+  background-color: #30416c;
+  margin-top: 10px; }
