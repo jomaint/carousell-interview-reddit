@@ -14,6 +14,10 @@ export default class AddTopicModal extends React.Component {
         this.setState({ title: newTitle });
     }
 
+    onSubmit = () => {
+        this.props.onAdd(this.state.title);
+    }
+
     render() {
         return (
             <Modal show={this.props.show} onHide={this.onClose} dialogClassName="topic-modal">
@@ -28,7 +32,7 @@ export default class AddTopicModal extends React.Component {
                             <input type="text" id="new-topic-title" onChange={this.onTitleChange}></input>
                         </div>
                         <div>
-                            <Button id="submit-topic-btn" bsStyle="primary" onClick={this.props.onAdd}>Add new topic</Button>
+                            <Button id="submit-topic-btn" bsStyle="primary" onClick={this.onSubmit}>Add new topic</Button>
                         </div>
                     </div>
                 </Modal.Body>

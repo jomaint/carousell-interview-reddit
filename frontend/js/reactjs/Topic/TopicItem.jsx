@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Row, Col } from 'react-bootstrap';
+import { updateTopic } from '../Services';
 
 export default class TopicItem extends React.Component {
     constructor(props) {
@@ -7,12 +8,23 @@ export default class TopicItem extends React.Component {
         this.state = {};
     }
 
+    // Why do i not just update just this item
     onDownVote = () => {
-        console.log('onDownVote');
+        let { item } = this.props;
+        let newVote = item.votes - 1;
+
+        updateTopic(item._id,newVote,() => {
+            this.props.onRefreshList();
+        });
     }
 
     onUpVote = () => {
-        console.log('onUpVote');
+        let { item } = this.props;
+        let newVote = item.votes + 1;
+
+        updateTopic(item._id,newVote,() => {
+            this.props.onRefreshList();
+        });
 
     }
 
@@ -23,7 +35,7 @@ export default class TopicItem extends React.Component {
                 <Col xs={12}>
                     <span className="rank">{rank}</span>
                     <div className="votes">
-                        <div className="arrow up" onClick={this.onDownVote}></div>
+                        <div className="arrow up" onClick={this.onUpVote}></div>
                         <div className="score">{formatNumber(item.votes)}</div>
                         <div className="arrow down" onClick={this.onDownVote}></div>
                     </div>
