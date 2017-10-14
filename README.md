@@ -45,14 +45,17 @@ This way of normalising and storing the topics allows ease of retrieving top 20,
 ### Topic API
 #### Getting list of top 20 Topics
 /GET `/api/topics`
+
 #### Adding new Topic
 /POST `/api/topics`
 
 | key | type |
 | ------ | ------ |
 | title | string |
+
 #### Upvoting / Downvoting  Topic
 /PUT `/api/topics/:topicId`
+
 | key | type |
 | ------ | ------ |
 | newVote | Integer |
