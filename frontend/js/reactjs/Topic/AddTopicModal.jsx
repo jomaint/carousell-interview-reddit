@@ -24,6 +24,7 @@ export default class AddTopicModal extends React.Component {
 
     onSubmit = () => {
         this.props.onAdd(this.state.title);
+        this.state.title = "";
     }
 
     onClose = () => {
@@ -38,7 +39,7 @@ export default class AddTopicModal extends React.Component {
         return (
             <Modal show={this.props.show} onHide={this.onClose} dialogClassName="topic-modal">
                 <Modal.Header closeButton>
-                    <Modal.Title>Submit a new Topic</Modal.Title>
+                    <Modal.Title>New Topic</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>

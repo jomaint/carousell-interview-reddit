@@ -1,5 +1,5 @@
 body {
-  font-family: Lato; }
+  font-family: verdana; }
 
 #header {
   border-bottom: 1px solid #5f99cf;
@@ -43,7 +43,7 @@ body {
     font-size: medium;
     text-align: right; }
   #topic-list .topic-item .votes {
-    width: 80px;
+    width: 50px;
     display: inline-block;
     float: left;
     margin-left: 7px;
@@ -85,10 +85,15 @@ body {
     #topic-list .topic-item .entry .title {
       font-size: 16px;
       margin-right: .4em;
+      margin-bottom: 0;
       overflow: hidden;
       color: #0000ff; }
       #topic-list .topic-item .entry .title:visited {
         color: #551a8b; }
+    #topic-list .topic-item .entry .created-date {
+      color: #888;
+      font-size: 11px;
+      line-height: 11px; }
 
 .topic-modal .modal-content {
   overflow: auto;

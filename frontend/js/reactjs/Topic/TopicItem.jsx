@@ -40,10 +40,11 @@ export default class TopicItem extends React.Component {
                         <div className="arrow down" onClick={this.onDownVote}></div>
                     </div>
                     <a className="topic-thumbnail">
-                        <img src={`http://loremflickr.com/320/240?random=${rank}`} height="50" width="70" />
+                        <img src={item.imgSrc} height="50" width="70" />
                     </a>
                     <div className="entry">
                         <p className="title">{item.title}</p>
+                        <span className="created-date">{`Submitted ${formatDate(item.createdDate)} ago`}</span>
                     </div>
                 </Col>
             </Row>
@@ -56,4 +57,36 @@ function formatNumber(num) {
         return num / 1000 + 'K'
     else
         return num;
+}
+
+function formatDate(date) {
+    let now = new Date();
+    let created = new Date(date);
+    // difference in seconds
+    let diff = (now.getTime() - created.getTime()) / 1000;
+
+    // less than a min
+    if (diff < 60) {
+        return "a while";
+
+    // less than a hour
+    } else if (diff < 3600) {
+        let count = Math.floor(diff%60);
+        return count + String((count>1) ? " minutes" : "minute");
+
+    // within a day (24 hours)
+    } else if (diff < 86400) {
+        let count = Math.floor(diff%3600);
+        return count + String((count>1) ? " hours" : "hour");
+
+     // within a month
+     } else if (diff < 2419200) {
+         let count = Math.floor(diff%604800);
+         return count + String((count>1) ? " weeks" : "week");
+
+     // within a year
+     } else if (diff < 29030400) {
+         let count = Math.floor(diff%2419200);
+         return count + String((count>1) ? " months" : "month");
+     }
 }

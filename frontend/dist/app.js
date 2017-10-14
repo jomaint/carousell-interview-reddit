@@ -108,6 +108,7 @@ var AddTopicModal = function (_React$Component) {
 
         _this.onSubmit = function () {
             _this.props.onAdd(_this.state.title);
+            _this.state.title = "";
         };
 
         _this.onClose = function () {
@@ -137,7 +138,7 @@ var AddTopicModal = function (_React$Component) {
                     _react2.default.createElement(
                         _reactBootstrap.Modal.Title,
                         null,
-                        'Submit a new Topic'
+                        'New Topic'
                     )
                 ),
                 _react2.default.createElement(
@@ -280,7 +281,7 @@ var TopicItem = function (_React$Component) {
                     _react2.default.createElement(
                         'a',
                         { className: 'topic-thumbnail' },
-                        _react2.default.createElement('img', { src: 'http://loremflickr.com/320/240?random=' + rank, height: '50', width: '70' })
+                        _react2.default.createElement('img', { src: item.imgSrc, height: '50', width: '70' })
                     ),
                     _react2.default.createElement(
                         'div',
@@ -289,6 +290,11 @@ var TopicItem = function (_React$Component) {
                             'p',
                             { className: 'title' },
                             item.title
+                        ),
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'created-date' },
+                            'Submitted ' + formatDate(item.createdDate) + ' ago'
                         )
                     )
                 )
@@ -304,6 +310,38 @@ exports.default = TopicItem;
 
 function formatNumber(num) {
     if (num >= 10000) return num / 1000 + 'K';else return num;
+}
+
+function formatDate(date) {
+    var now = new Date();
+    var created = new Date(date);
+    // difference in seconds
+    var diff = (now.getTime() - created.getTime()) / 1000;
+
+    // less than a min
+    if (diff < 60) {
+        return "a while";
+
+        // less than a hour
+    } else if (diff < 3600) {
+        var count = Math.floor(diff % 60);
+        return count + String(count > 1 ? " minutes" : "minute");
+
+        // within a day (24 hours)
+    } else if (diff < 86400) {
+        var _count = Math.floor(diff % 3600);
+        return _count + String(_count > 1 ? " hours" : "hour");
+
+        // within a month
+    } else if (diff < 2419200) {
+        var _count2 = Math.floor(diff % 604800);
+        return _count2 + String(_count2 > 1 ? " weeks" : "week");
+
+        // within a year
+    } else if (diff < 29030400) {
+        var _count3 = Math.floor(diff % 2419200);
+        return _count3 + String(_count3 > 1 ? " months" : "month");
+    }
 }
 
 },{"../Services":2,"react":534,"react-bootstrap":275}],5:[function(require,module,exports){

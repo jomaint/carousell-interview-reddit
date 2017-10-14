@@ -34,6 +34,8 @@ exports["default"] = function(route) {
         
         newTopic._id = id ;
         newTopic.title = req.body.title;
+        newTopic.imgSrc = "http://lorempixel.com/320/240/city/" + (rank.length + 1);
+        newTopic.createdDate = new Date();
         newTopic.votes = 0;
         
         // save topics
@@ -55,13 +57,45 @@ exports["default"] = function(route) {
             res.json({ error: "Id does not exist" });
         } else {
             topics[id].votes = newVote;
+            checkVote(id);
+
             res.json({ success:  topics[id] });
         }
     });
 }
 
 // Check and rearrange rank according to vote
-function checkAndSaveVote() {
+function checkVote(topicId,index) {
+    // Check if index of topic in rank array is provided, if not get index
+    if (!index) {
+        index = rank.indexOf(topicId);
+    }
+
+    console.log('index',index);
+
+    // Prev topic relative to current
+    let prevIndex = index - 1;
+    let prevTopicId = rank[prevIndex];
+    // Next topic relative to current
+    let nextIndex = index + 1;
+    let nextTopicId = rank[nextIndex];
+    
+    // current topic more than prev, swap
+    //console.log('testing index', index, ' & curr vote > prev vote : ',(topics[topicId].votes > topics[prevTopicId].votes));
+    if ((prevIndex != -1) && (topics[topicId].votes > topics[prevTopicId].votes)) {
+        console.log('prevIndex',prevIndex);
+        rank.swap(index,prevIndex);
+        // check if we need to propagate shift
+        checkVote(prevTopicId,prevIndex);
+
+    // current topic less than next, swap
+    } else if ((nextIndex != rank.length) && (topics[topicId].votes < topics[nextTopicId].votes)) {
+        console.log('nextIndex',nextIndex);
+        rank.swap(index,nextIndex);
+        checkVote(nextTopicId,nextIndex);
+    }
+
+    return;
 }
 
 function generateID() {
@@ -72,6 +106,13 @@ function generateID() {
     } while(id in topics);
 
     return id;
+}
+
+Array.prototype.swap = function (x,y) {
+  var b = this[x];
+  this[x] = this[y];
+  this[y] = b;
+  return this;
 }
 
 module.exports = exports["default"];

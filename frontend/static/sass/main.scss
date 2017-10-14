@@ -3,7 +3,7 @@ $grey: #c6c6c6;
 
 // ===== COMMON ===== //
 body {
-    font-family: Lato;
+    font-family: verdana;
 }
 
 // ===== END OF COMMON CLASSES ===== //
@@ -70,7 +70,7 @@ body {
 
         // topic votes block
         .votes {
-            width: 80px;
+            width: 50px;
             display: inline-block;
             float: left;
             margin-left: 7px;
@@ -125,12 +125,19 @@ body {
             .title {
                 font-size: 16px;
                 margin-right: .4em;
+                margin-bottom: 0;
                 overflow: hidden;
                 color: #0000ff;
 
                 &:visited {
                     color: #551a8b;
                 }
+            }
+
+            .created-date {
+                color: #888;
+                font-size: 11px;
+                line-height: 11px;
             }
         }
     }
