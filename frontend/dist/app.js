@@ -96,15 +96,31 @@ var AddTopicModal = function (_React$Component) {
 
         _this.onTitleChange = function (event) {
             var newTitle = event.target.value;
-            _this.setState({ title: newTitle });
+            if (newTitle.length <= 255) {
+                _this.setState({
+                    title: newTitle,
+                    error: ""
+                });
+            } else {
+                _this.setState({ error: "Title has a maxiumum length of 250 characters" });
+            }
         };
 
         _this.onSubmit = function () {
             _this.props.onAdd(_this.state.title);
         };
 
+        _this.onClose = function () {
+            _this.setState({
+                title: "",
+                error: ""
+            });
+            _this.props.onClose();
+        };
+
         _this.state = {
-            title: ""
+            title: "",
+            error: ""
         };
         return _this;
     }
@@ -138,7 +154,19 @@ var AddTopicModal = function (_React$Component) {
                                 { className: 'label' },
                                 'Title'
                             ),
-                            _react2.default.createElement('input', { type: 'text', id: 'new-topic-title', onChange: this.onTitleChange })
+                            _react2.default.createElement('textarea', {
+                                id: 'new-topic-title',
+                                type: 'text',
+                                rows: '2',
+                                value: this.state.title,
+                                onChange: this.onTitleChange, autoFocus: true })
+                        ),
+
+                        /* error msg */
+                        this.state.error && _react2.default.createElement(
+                            'span',
+                            { className: 'error-msg' },
+                            this.state.error
                         ),
                         _react2.default.createElement(
                             'div',
@@ -375,7 +403,7 @@ var TopicList = function (_React$Component) {
                             return _react2.default.createElement(_TopicItem2.default, {
                                 key: ind,
                                 item: topic,
-                                rank: ind,
+                                rank: ind + 1,
                                 onRefreshList: _this2.getTopicsFromAPI });
                         })
                     )

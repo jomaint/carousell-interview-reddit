@@ -104,8 +104,10 @@ body {
     font-size: 14px;
     text-align: left;
     padding-left: 0; }
-  .topic-modal #topic-form input {
+  .topic-modal #topic-form textarea {
     width: 100%; }
+  .topic-modal #topic-form .error-msg {
+    color: #d43242; }
 
 .topic-modal #submit-topic-btn {
   position: relative;

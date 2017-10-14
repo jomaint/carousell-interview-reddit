@@ -5,17 +5,33 @@ export default class AddTopicModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: ""
+            title: "",
+            error: ""
         };
     }
 
     onTitleChange = (event) => {
         let newTitle = event.target.value;
-        this.setState({ title: newTitle });
+        if (newTitle.length <= 255) {
+            this.setState({
+                title: newTitle,
+                error: ""
+            });
+        } else {
+            this.setState({ error: "Title has a maxiumum length of 250 characters" });
+        }
     }
 
     onSubmit = () => {
         this.props.onAdd(this.state.title);
+    }
+
+    onClose = () => {
+        this.setState({
+            title: "",
+            error: ""
+        });
+        this.props.onClose();
     }
 
     render() {
@@ -29,8 +45,17 @@ export default class AddTopicModal extends React.Component {
                     <div id="topic-form">
                         <div className="rounded-container">
                             <span className="label">Title</span>
-                            <input type="text" id="new-topic-title" onChange={this.onTitleChange}></input>
+                            <textarea
+                                id="new-topic-title"
+                                type="text"
+                                rows="2"
+                                value={this.state.title}
+                                onChange={this.onTitleChange} autoFocus />
                         </div>
+                        {
+                            /* error msg */
+                            this.state.error && <span className="error-msg">{this.state.error}</span>
+                        }
                         <div>
                             <Button id="submit-topic-btn" bsStyle="primary" onClick={this.onSubmit}>Add new topic</Button>
                         </div>

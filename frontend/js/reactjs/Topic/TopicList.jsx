@@ -46,7 +46,7 @@ export default class TopicList extends React.Component {
                                 <TopicItem
                                     key={ind}
                                     item={topic}
-                                    rank={ind}
+                                    rank={ind+1}
                                     onRefreshList={this.getTopicsFromAPI} />
                             )
                         }

@@ -156,8 +156,12 @@ body {
             padding-left: 0;
         }
 
-        input {
+        textarea {
             width: 100%;
+        }
+
+        .error-msg {
+            color: #d43242;
         }
     }
 
