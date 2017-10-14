@@ -1,8 +1,8 @@
 'use strict';
 var shortid = require('shortid');
 
-let rank = [];
-let topics = {};
+let rank = [];      // stores the rank of topic ids, in descending order
+let topics = {};    // stores actual topic data, topicId as key
 
 exports["default"] = function(route) {
     route.route('/topics')
@@ -10,7 +10,7 @@ exports["default"] = function(route) {
     // get all current topics
     .get(function(req,res){
         let first20
-        
+
         // get first 20 if more than 20
         if (rank.length > 20) {
             // clone & slice rank arr
@@ -18,7 +18,7 @@ exports["default"] = function(route) {
         } else {
             first20 = rank.slice();
         }
-        
+
         // then populate id with actual obj
         let populated = first20.map(function(item,ind) {
             return topics[item];
@@ -26,20 +26,26 @@ exports["default"] = function(route) {
 
         res.json({ success: populated });
     })
-    
+
     // save topics
     .post(function(req,res){
         let newTopic = {};
         let id = generateID();
-        
+
+        // Checks
+        if (req.body.title.length > 255)
+            res.json({ error: "Title exceeded maximum length of 255" });
+
+        // populate new topic
         newTopic._id = id ;
         newTopic.title = req.body.title;
         newTopic.imgSrc = "http://lorempixel.com/320/240/city/" + (rank.length + 1);
         newTopic.createdDate = new Date();
         newTopic.votes = 0;
-        
+
         // save topics
         topics[id] = newTopic;
+
         // push to rank
         rank.push(id);
 
@@ -71,26 +77,22 @@ function checkVote(topicId,index) {
         index = rank.indexOf(topicId);
     }
 
-    console.log('index',index);
-
     // Prev topic relative to current
     let prevIndex = index - 1;
     let prevTopicId = rank[prevIndex];
     // Next topic relative to current
     let nextIndex = index + 1;
     let nextTopicId = rank[nextIndex];
-    
+
     // current topic more than prev, swap
     //console.log('testing index', index, ' & curr vote > prev vote : ',(topics[topicId].votes > topics[prevTopicId].votes));
     if ((prevIndex != -1) && (topics[topicId].votes > topics[prevTopicId].votes)) {
-        console.log('prevIndex',prevIndex);
         rank.swap(index,prevIndex);
         // check if we need to propagate shift
         checkVote(prevTopicId,prevIndex);
 
     // current topic less than next, swap
     } else if ((nextIndex != rank.length) && (topics[topicId].votes < topics[nextTopicId].votes)) {
-        console.log('nextIndex',nextIndex);
         rank.swap(index,nextIndex);
         checkVote(nextTopicId,nextIndex);
     }
@@ -98,6 +100,7 @@ function checkVote(topicId,index) {
     return;
 }
 
+// Generate a short random ID for topic id
 function generateID() {
     let id;
     // ensure id is unique, if not generate until unique
@@ -108,6 +111,7 @@ function generateID() {
     return id;
 }
 
+// Add a new method to allow us to swap two known index in an array
 Array.prototype.swap = function (x,y) {
   var b = this[x];
   this[x] = this[y];
