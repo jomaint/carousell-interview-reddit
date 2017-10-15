@@ -71,22 +71,22 @@ function formatDate(date) {
 
     // less than a hour
     } else if (diff < 3600) {
-        let count = Math.floor(diff%60);
+        let count = Math.floor(diff/60);
         return count + String((count>1) ? " minutes" : "minute");
 
     // within a day (24 hours)
     } else if (diff < 86400) {
-        let count = Math.floor(diff%3600);
+        let count = Math.floor(diff/3600);
         return count + String((count>1) ? " hours" : "hour");
 
      // within a month
      } else if (diff < 2419200) {
-         let count = Math.floor(diff%604800);
+         let count = Math.floor(diff/604800);
          return count + String((count>1) ? " weeks" : "week");
 
      // within a year
      } else if (diff < 29030400) {
-         let count = Math.floor(diff%2419200);
+         let count = Math.floor(diff/2419200);
          return count + String((count>1) ? " months" : "month");
      }
 }

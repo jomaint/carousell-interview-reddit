@@ -324,22 +324,22 @@ function formatDate(date) {
 
         // less than a hour
     } else if (diff < 3600) {
-        var count = Math.floor(diff % 60);
+        var count = Math.floor(diff / 60);
         return count + String(count > 1 ? " minutes" : "minute");
 
         // within a day (24 hours)
     } else if (diff < 86400) {
-        var _count = Math.floor(diff % 3600);
+        var _count = Math.floor(diff / 3600);
         return _count + String(_count > 1 ? " hours" : "hour");
 
         // within a month
     } else if (diff < 2419200) {
-        var _count2 = Math.floor(diff % 604800);
+        var _count2 = Math.floor(diff / 604800);
         return _count2 + String(_count2 > 1 ? " weeks" : "week");
 
         // within a year
     } else if (diff < 29030400) {
-        var _count3 = Math.floor(diff % 2419200);
+        var _count3 = Math.floor(diff / 2419200);
         return _count3 + String(_count3 > 1 ? " months" : "month");
     }
 }
