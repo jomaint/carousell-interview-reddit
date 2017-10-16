@@ -27,6 +27,11 @@ app.use('/dist', express.static(__dirname + '/../frontend/dist/', { maxage: '8h'
 app.use('/api',  router);
 TopicRoute(router);
 
+// Serve robot
+app.get('/robots.txt', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname + '/../frontend/robots.txt'));
+});
+
 // Server index.html regardless of path
 app.get('/*', (req, res) => {
   res.status(200).sendFile(path.join(__dirname + '/../frontend/index.html'));
