@@ -12,6 +12,11 @@ Install package.json @ backend/frontend folder
 npm install
 ```
 
+Backend API tests (backend folder)
+```
+npm test
+```  
+
 Start local server (backend folder)
 ```
 npm start

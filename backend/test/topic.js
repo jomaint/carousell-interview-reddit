@@ -26,7 +26,7 @@ describe('#disable()', function() {
             done();
         });
     });
-    
+
     // Test /POST topics
     it('/POST new Topics', function(done) {
         chai.request(baseURL)
