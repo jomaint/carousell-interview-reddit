@@ -2,6 +2,7 @@
   "name": "carousell-interview-reddit",
   "version": "1.0.0",
   "scripts": {
+      "heroku-prebuild": "cd backend && npm install",
       "start": "node backend/server.js",
       "test": "mocha"
   },
