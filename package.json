@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
       "start": "node backend/server.js",
-      "test": "mocha",
+      "test": "mocha"
   },
   "engines": {
       "node": "6.9.1"
