@@ -17,6 +17,12 @@ Backend API tests (backend folder)
 npm test
 ```  
 
+Frontend Unit tests (frontend folder)
+```
+npm test
+```  
+
+
 Start local server (backend folder)
 ```
 npm start

@@ -8,7 +8,6 @@ export default class TopicItem extends React.Component {
         this.state = {};
     }
 
-    // Why do i not just update just this item
     onDownVote = () => {
         let { item } = this.props;
         let newVote = item.votes - 1;
